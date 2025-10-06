@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
+        change.Normalize();
         myRigidbody.MovePosition(transform.position + change.normalized * (speed * Time.fixedDeltaTime));
     }
 }
