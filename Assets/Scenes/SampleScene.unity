@@ -373,6 +373,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2203,7 +2204,16 @@ Tilemap:
 =======
 >>>>>>> parent of c5e3af2 (TileMap started)
 =======
+<<<<<<< HEAD
 >>>>>>> parent of 123636c (overworld merge)
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of c5e3af2 (TileMap started)
+>>>>>>> f719627596d474ccc77fc60c0a40c6e63992390f
 --- !u!1 &1668847459
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,6 +2328,7 @@ Transform:
   m_LocalScale: {x: 0.9944, y: 1.0111, z: 1}
   m_ConstrainProportionsScale: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Children:
   - {fileID: 10197153}
   - {fileID: 492361400}
@@ -2331,7 +2342,12 @@ Transform:
   m_Children: []
 >>>>>>> parent of c5e3af2 (TileMap started)
 =======
+<<<<<<< HEAD
 >>>>>>> parent of 123636c (overworld merge)
+=======
+  m_Children: []
+>>>>>>> parent of c5e3af2 (TileMap started)
+>>>>>>> f719627596d474ccc77fc60c0a40c6e63992390f
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1668847464
@@ -2418,8 +2434,11 @@ Animator:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 123636c (overworld merge)
+=======
+>>>>>>> f719627596d474ccc77fc60c0a40c6e63992390f
 --- !u!114 &1668847467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7528,7 +7547,11 @@ Tilemap:
 =======
 >>>>>>> parent of c5e3af2 (TileMap started)
 =======
+<<<<<<< HEAD
 >>>>>>> parent of 123636c (overworld merge)
+=======
+>>>>>>> parent of c5e3af2 (TileMap started)
+>>>>>>> f719627596d474ccc77fc60c0a40c6e63992390f
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
