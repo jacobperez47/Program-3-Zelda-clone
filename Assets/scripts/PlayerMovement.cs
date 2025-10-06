@@ -27,8 +27,11 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        currentState = PlayerStates.walk;
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        animator.SetFloat("moveX", 0f);
+        animator.SetFloat("moveY", -1f);
      
     }
 
