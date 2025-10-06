@@ -373,6 +373,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+<<<<<<< HEAD
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3338,6 +3339,13 @@ Tilemap:
 >>>>>>> c5e3af2389f172893e2879676c75ab9db4e72e07
 =======
 >>>>>>> parent of c5e3af2 (TileMap started)
+=======
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> parent of c5e3af2 (TileMap started)
 --- !u!1 &1668847459
 GameObject:
   m_ObjectHideFlags: 0
@@ -3452,6 +3460,7 @@ Transform:
   m_LocalScale: {x: 0.9944, y: 1.0111, z: 1}
   m_ConstrainProportionsScale: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Children:
 <<<<<<< HEAD
   - {fileID: 10197153}
@@ -3461,6 +3470,9 @@ Transform:
 =======
   - {fileID: 519420032}
 >>>>>>> c5e3af2389f172893e2879676c75ab9db4e72e07
+=======
+  m_Children: []
+>>>>>>> parent of c5e3af2 (TileMap started)
 =======
   m_Children: []
 >>>>>>> parent of c5e3af2 (TileMap started)
@@ -3547,6 +3559,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &1668847467
@@ -8658,6 +8671,8 @@ Tilemap:
     e32: 0
     e33: 1
 >>>>>>> c5e3af2389f172893e2879676c75ab9db4e72e07
+=======
+>>>>>>> parent of c5e3af2 (TileMap started)
 =======
 >>>>>>> parent of c5e3af2 (TileMap started)
 --- !u!1660057539 &9223372036854775807
