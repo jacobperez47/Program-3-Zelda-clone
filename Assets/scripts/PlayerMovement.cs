@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("attacking", true);
         currentState = PlayerStates.attack;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         animator.SetBool("attacking", false);
         float remainingCooldown = attackCooldown - 0.1f;
         if (remainingCooldown > 0f)
