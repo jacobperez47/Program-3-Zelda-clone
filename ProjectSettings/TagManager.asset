@@ -7,6 +7,7 @@ TagManager:
   - vision
   - attack
   - enemy
+  - breakable
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1798945911
+    locked: 0
+  - name: Signs
+    uniqueID: 4131096889
+    locked: 0
+  - name: 
+    uniqueID: 3514250935
     locked: 0

@@ -20,6 +20,7 @@ public class LogScript : EnemyScript
 
     private bool isVisible;
     private Rigidbody2D rb;
+    private bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +41,7 @@ public class LogScript : EnemyScript
 
     void FixedUpdate()
     {
-        if (isVisible && target && rb)
+        if (isVisible && target && rb && !isAttacking)
         {
             Vector3 direction = (target.position - transform.position).normalized;
 
@@ -63,8 +64,9 @@ public class LogScript : EnemyScript
                 Debug.Log("Player in vision range");
             }
 
-            if (GetComponent<CircleCollider2D>() == attack)
+           if (attack != null && other.IsTouching(attack))
             {
+                isAttacking = true;
                 Debug.Log("Player in attack range");
             }
         }
@@ -77,6 +79,11 @@ public class LogScript : EnemyScript
             if (vision != null && !other.IsTouching(vision))
             {
                 isVisible = false;
+            }
+
+            if (attack != null && !other.IsTouching(attack))
+            {
+                isAttacking = false;
             }
 
             Debug.Log("Player out of vision range");
