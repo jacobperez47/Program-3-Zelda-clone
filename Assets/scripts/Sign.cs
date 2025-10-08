@@ -25,6 +25,7 @@ public class Sign : MonoBehaviour
             }
             else{
                 dialogBox.SetActive(true);
+                dialogText.gameObject.SetActive(true);
                 dialogText.text = dialog;
             }
         }
