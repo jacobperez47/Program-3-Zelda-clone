@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) && currentState != PlayerStates.attack && 
-            Time.time >= attackCooldown)
+            Time.time >= nextAttackTime)
         {
             attackPressed = true;
         }
@@ -70,11 +70,11 @@ public class PlayerMovement : MonoBehaviour
         currentState = PlayerStates.attack;
         yield return new WaitForSeconds(0.05f);
         animator.SetBool("attacking", false);
-        float remainingCooldown = attackCooldown - 0.1f;
-        if (remainingCooldown > 0f)
-        {
-            yield return new WaitForSeconds(remainingCooldown);
-        }
+        // float remainingCooldown = attackCooldown - 0.1f;
+        // if (remainingCooldown > 0f)
+        // {
+        //     yield return new WaitForSeconds(remainingCooldown);
+        // }
         currentState = PlayerStates.walk;
         
     }

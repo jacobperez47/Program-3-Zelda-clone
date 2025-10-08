@@ -4,62 +4,45 @@ using UnityEngine;
 
 public class knockback : MonoBehaviour
 {
-    public float thrust;   
+    public float thrust;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("enemy"))
+        // if (other.CompareTag("breakable")) 
+        // {
+        //     other.GetComponent<PotScript>().smash();
+        // }
+        if (other.CompareTag("enemy") || other.CompareTag("Player"))
         {
-            Rigidbody2D enemy = other.GetComponent<Rigidbody2D>();
-            LogScript log = other.GetComponent<LogScript>();
-            if (enemy != null)
+            Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
+            if (hit != null)
             {
-                enemy.GetComponent<EnemyScript>().currentState = EnemyStates.stagger;
-                StartCoroutine(KnockbackCoroutine(enemy));
-                log.StartKnockBack(0.2f);
-                
+                if (other.CompareTag("enemy"))
+                {
+                    if (hit.GetComponent<EnemyScript>().currentState != EnemyStates.stagger)
+                    {
+                        hit.GetComponent<EnemyScript>().currentState = EnemyStates.stagger;
+                        Vector2 difference = hit.transform.position - transform.position;
+                        Vector2 force = difference.normalized * thrust;
+                        other.GetComponent<EnemyScript>().Knock(hit, force,.2f);
+                        
+                    }
+                }
+
+                //StartCoroutine(KnockbackCoroutine(hit));
             }
         }
     }
 
-    private IEnumerator KnockbackCoroutine(Rigidbody2D enemy)
-    {
-        if (!enemy)
-        {
-            yield break;
-        }
-        
-        Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-        if (!enemyRb)
-        {
-            yield break;       
-        }
-        Vector2 difference = enemyRb.transform.position - transform.position;
-        Vector2 force = difference.normalized * thrust;
-        
-        enemyRb.velocity = force;
-        yield return new WaitForSeconds(0.2f);
-
-
-        if (!enemyRb)
-        {
-            yield break;
-        } 
-        
-        enemy.velocity = new Vector2();
-
-        enemy.GetComponent<EnemyScript>().currentState = EnemyStates.idle;
-
-    }
+    
 }
