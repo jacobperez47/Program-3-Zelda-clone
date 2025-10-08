@@ -21,10 +21,12 @@ public class LogScript : EnemyScript
     private bool isVisible;
     private Rigidbody2D rb;
     private bool isAttacking;
+    private bool isKnockedBack = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentState = EnemyStates.idle;
         rb = GetComponent<Rigidbody2D>();
         isVisible = false;
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -41,12 +43,42 @@ public class LogScript : EnemyScript
 
     void FixedUpdate()
     {
-        if (isVisible && target && rb && !isAttacking)
+        if (isVisible && target && rb && !isAttacking && !isKnockedBack)
         {
-            Vector3 direction = (target.position - transform.position).normalized;
-
-            rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
+            if ((currentState == EnemyStates.idle || currentState == EnemyStates.walk) &&
+                currentState != EnemyStates.stagger)
+            {
+                MoveToTarget();
+                changeState(EnemyStates.walk);
+            }
         }
+    }
+
+    private void MoveToTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+
+        rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
+    }
+
+    public void StartKnockBack(float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(StartKnockBackRoutine(duration));
+    }
+
+    private IEnumerator StartKnockBackRoutine(float knockbackDuration)
+    {
+        isKnockedBack = true;
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnockedBack = false;
+
+
+        Vector3 direction = (target.position - transform.position).normalized;
+
+        rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -64,7 +96,7 @@ public class LogScript : EnemyScript
                 Debug.Log("Player in vision range");
             }
 
-           if (attack != null && other.IsTouching(attack))
+            if (attack != null && other.IsTouching(attack))
             {
                 isAttacking = true;
                 Debug.Log("Player in attack range");
@@ -87,6 +119,14 @@ public class LogScript : EnemyScript
             }
 
             Debug.Log("Player out of vision range");
+        }
+    }
+
+    private void changeState(EnemyStates newState)
+    {
+        if (currentState != newState)
+        {
+            currentState = newState;
         }
     }
 }

@@ -22,10 +22,12 @@ public class knockback : MonoBehaviour
         if (other.CompareTag("enemy"))
         {
             Rigidbody2D enemy = other.GetComponent<Rigidbody2D>();
+            LogScript log = other.GetComponent<LogScript>();
             if (enemy != null)
             {
-
+                enemy.GetComponent<EnemyScript>().currentState = EnemyStates.stagger;
                 StartCoroutine(KnockbackCoroutine(enemy));
+                log.StartKnockBack(0.2f);
                 
             }
         }
@@ -47,7 +49,7 @@ public class knockback : MonoBehaviour
         Vector2 force = difference.normalized * thrust;
         
         enemyRb.velocity = force;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
 
 
         if (!enemyRb)
@@ -56,6 +58,8 @@ public class knockback : MonoBehaviour
         } 
         
         enemy.velocity = new Vector2();
-        
+
+        enemy.GetComponent<EnemyScript>().currentState = EnemyStates.idle;
+
     }
 }
