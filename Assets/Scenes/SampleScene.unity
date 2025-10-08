@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 31982629}
   - component: {fileID: 31982630}
-  - component: {fileID: 31982631}
   - component: {fileID: 31982632}
   m_Layer: 0
   m_Name: right hitbox
@@ -206,19 +205,6 @@ PolygonCollider2D:
       - {x: 0.992374, y: 0.20170382}
       - {x: 0.35731184, y: 0.45298216}
   m_UseDelaunayMesh: 0
---- !u!114 &31982631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31982628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 0
 --- !u!114 &31982632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 169422853}
   - component: {fileID: 169422854}
-  - component: {fileID: 169422855}
   - component: {fileID: 169422856}
   m_Layer: 0
   m_Name: left hitbox
@@ -317,19 +302,6 @@ PolygonCollider2D:
       - {x: -1.2150805, y: 0.43261498}
       - {x: -0.96066964, y: 0.447915}
   m_UseDelaunayMesh: 0
---- !u!114 &169422855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169422852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 0
 --- !u!114 &169422856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +626,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025551438, y: -0.873015}
+  m_Offset: {x: 0.0061752796, y: -0.6017566}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -665,7 +637,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.875726, y: 1.1908642}
+  m_Size: {x: 0.8834753, y: 0.6483475}
   m_EdgeRadius: 0
 --- !u!50 &283292629
 Rigidbody2D:
@@ -3371,7 +3343,6 @@ GameObject:
   m_Component:
   - component: {fileID: 633981568}
   - component: {fileID: 633981569}
-  - component: {fileID: 633981570}
   - component: {fileID: 633981571}
   m_Layer: 0
   m_Name: up hitbox
@@ -3447,19 +3418,6 @@ PolygonCollider2D:
       - {x: -0.27297053, y: 1.0047122}
       - {x: -0.56865096, y: 0.67177916}
   m_UseDelaunayMesh: 0
---- !u!114 &633981570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633981567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 0
 --- !u!114 &633981571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3487,7 +3445,7 @@ GameObject:
   - component: {fileID: 683664476}
   - component: {fileID: 683664475}
   - component: {fileID: 683664474}
-  - component: {fileID: 683664481}
+  - component: {fileID: 683664482}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -3756,7 +3714,7 @@ Transform:
   - {fileID: 169422853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &683664481
+--- !u!114 &683664482
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3768,7 +3726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 5
+  thrust: 20
 --- !u!1 &1453499756
 GameObject:
   m_ObjectHideFlags: 0
@@ -3779,7 +3737,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1453499757}
   - component: {fileID: 1453499758}
-  - component: {fileID: 1453499759}
   - component: {fileID: 1453499760}
   m_Layer: 0
   m_Name: down hitbox
@@ -3853,19 +3810,6 @@ PolygonCollider2D:
       - {x: 0.50361323, y: -1.019157}
       - {x: 0.46544442, y: -0.41055357}
   m_UseDelaunayMesh: 0
---- !u!114 &1453499759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453499756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 5
 --- !u!114 &1453499760
 MonoBehaviour:
   m_ObjectHideFlags: 0

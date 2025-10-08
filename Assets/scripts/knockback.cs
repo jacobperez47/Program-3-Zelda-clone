@@ -19,18 +19,43 @@ public class knockback : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("enemy"))
+        if (other.CompareTag("enemy"))
         {
             Rigidbody2D enemy = other.GetComponent<Rigidbody2D>();
             if (enemy != null)
             {
-                enemy.isKinematic = false;
+
+                StartCoroutine(KnockbackCoroutine(enemy));
                 
-                Vector2 difference = enemy.transform.position - transform.position;
-                difference = difference.normalized * thrust;
-                enemy.AddForce(difference, ForceMode2D.Impulse);
-                enemy.isKinematic = true;
             }
         }
+    }
+
+    private IEnumerator KnockbackCoroutine(Rigidbody2D enemy)
+    {
+        if (!enemy)
+        {
+            yield break;
+        }
+        
+        Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+        if (!enemyRb)
+        {
+            yield break;       
+        }
+        Vector2 difference = enemyRb.transform.position - transform.position;
+        Vector2 force = difference.normalized * thrust;
+        
+        enemyRb.velocity = force;
+        yield return new WaitForSeconds(0.3f);
+
+
+        if (!enemyRb)
+        {
+            yield break;
+        } 
+        
+        enemy.velocity = new Vector2();
+        
     }
 }
