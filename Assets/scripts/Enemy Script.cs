@@ -19,6 +19,10 @@ public class EnemyScript : MonoBehaviour
     public int baseAttack;
 
     public EnemyStates currentState;
+    
+    public CircleCollider2D vision;
+
+    public CircleCollider2D attack;
 
     public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime)
     {
@@ -54,5 +58,10 @@ public class EnemyScript : MonoBehaviour
             myRigidBody.velocity = Vector2.zero;
         }
         currentState = EnemyStates.idle;
+    }
+    public bool IsSensor(Collider2D otherCollider)
+    {
+        // Check if the collider being hit is one of the sensor colliders
+        return otherCollider == vision || otherCollider == attack;
     }
 }

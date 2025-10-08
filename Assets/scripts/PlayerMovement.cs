@@ -8,7 +8,9 @@ public enum PlayerStates
 {
     walk,
     attack,
-    interact
+    interact,
+    stagger,
+    idle,
 }
 
 public class PlayerMovement : MonoBehaviour
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(AttackCo());
         }
 
-       else if (currentState == PlayerStates.walk)
+       else if (currentState == PlayerStates.walk || currentState == PlayerStates.idle)
         {
             UpdateCharacterAnimation();
         }
@@ -95,5 +97,31 @@ public class PlayerMovement : MonoBehaviour
     {
         change.Normalize();
         myRigidbody.MovePosition(transform.position + change.normalized * (speed * Time.fixedDeltaTime));
+    }
+    
+    public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime)
+    {
+        // Safety check
+        if (rigidBody == null) return;
+
+        // Force application and state setting (instantaneous)
+        currentState = PlayerStates.stagger; 
+        rigidBody.velocity = finalKnockVelocity;
+        
+        // Start the coroutine for the delayed reset
+        StopCoroutine("KnockbackCoroutine"); 
+        StartCoroutine(KnockbackCoroutine(rigidBody, knockTime));
+    }
+    
+    private IEnumerator KnockbackCoroutine(Rigidbody2D myRigidBody, float knockTime)
+    {
+        yield return new WaitForSeconds(knockTime); 
+
+        // Reset velocity and state
+        if (myRigidBody != null)
+        {
+            myRigidBody.velocity = Vector2.zero;
+        }
+        currentState = PlayerStates.idle;
     }
 }

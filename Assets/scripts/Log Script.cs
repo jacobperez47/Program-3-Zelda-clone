@@ -14,9 +14,9 @@ public class LogScript : EnemyScript
 
     public int baseDamage;
 
-    public CircleCollider2D vision;
-
-    public CircleCollider2D attack;
+    // public CircleCollider2D vision;
+    //
+    // public CircleCollider2D attack;
 
     private bool isVisible;
     private Rigidbody2D rb;
@@ -76,9 +76,9 @@ public class LogScript : EnemyScript
         isKnockedBack = false;
 
 
-        Vector3 direction = (target.position - transform.position).normalized;
-
-        rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
+        // Vector3 direction = (target.position - transform.position).normalized;
+        //
+        // rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -129,4 +129,6 @@ public class LogScript : EnemyScript
             currentState = newState;
         }
     }
+    
+    
 }

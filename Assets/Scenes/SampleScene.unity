@@ -590,6 +590,7 @@ MonoBehaviour:
   health: 0
   enemyName: 
   baseAttack: 0
+  currentState: 0
   speed: 2
   baseDamage: 0
   vision: {fileID: 1965993774}
@@ -726,7 +727,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1798945911
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1173596933, guid: 5af5f83e4ac8bdd4fab03aa127527ca2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -748,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 283292626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.93, y: -0.03, z: 0}
+  m_LocalPosition: {x: 2.93, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1008,7 +1009,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163870407
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 690700335, guid: c752478db8cb1ee47a34efe53abd908c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1157,7 +1158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0028, y: -0.0111, z: -10}
-  m_LocalScale: {x: 0.9944, y: 1.0111, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3788,7 +3789,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1798945911
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: -1967139946, guid: 791f34ef81d43d946b5ce54ed1a5674d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3832,7 +3833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 20
+  thrust: 10
 --- !u!1 &777248163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4123,7 +4124,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dialog
+  m_Text: "\t\t\t\tHello"
 --- !u!222 &1461328140
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4217,7 +4218,7 @@ MonoBehaviour:
   dialogBox: {fileID: 840827411}
   dialogText: {fileID: 1461328139}
   dialog: Area not yet developed
-  dialogActive: 0
+  playerInRange: 0
 --- !u!1 &1965993773
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,7 +4337,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 1
 --- !u!4 &2143463370
 Transform:
   m_ObjectHideFlags: 0
