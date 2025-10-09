@@ -22,27 +22,43 @@ public class knockback : MonoBehaviour
         // {
         //     other.GetComponent<PotScript>().smash();
         // }
-        if (other.CompareTag("enemy") || other.CompareTag("Player"))
+        if (other.CompareTag("enemy"))
         {
             Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
             if (hit != null)
             {
-                if (other.CompareTag("enemy"))
+                Vector2 difference = hit.transform.position - transform.position;
+                Vector2 force = difference.normalized * thrust;
+                
                 {
                     if (hit.GetComponent<EnemyScript>().currentState != EnemyStates.stagger)
                     {
                         hit.GetComponent<EnemyScript>().currentState = EnemyStates.stagger;
-                        Vector2 difference = hit.transform.position - transform.position;
-                        Vector2 force = difference.normalized * thrust;
-                        other.GetComponent<EnemyScript>().Knock(hit, force,.2f);
-                        
+
+                        other.GetComponent<EnemyScript>().Knock(hit, force, .2f);
                     }
                 }
 
-                //StartCoroutine(KnockbackCoroutine(hit));
+                
+
+
+                }
+            
+            
+        }
+        if (other.CompareTag("Player"))
+        {
+            Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
+            Vector2 difference = hit.transform.position - transform.position;
+            Vector2 force = difference.normalized * thrust;
+            if(hit.GetComponent<Collider2D>().IsTouching(hit.GetComponent<EnemyScript>().attackHitboxes)){
+                hit.GetComponent<PlayerMovement>().currentState = PlayerStates.stagger;
+
+                hit.GetComponent<PlayerMovement>().Knock(force, .2f);
+
             }
+
+               
         }
     }
-
-    
 }
