@@ -99,18 +99,18 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.MovePosition(transform.position + change.normalized * (speed * Time.fixedDeltaTime));
     }
     
-    public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime)
+    public void Knock( Vector2 finalKnockVelocity, float knockTime)
     {
         // Safety check
-        if (rigidBody == null) return;
+        if (myRigidbody == null) return;
 
         // Force application and state setting (instantaneous)
         currentState = PlayerStates.stagger; 
-        rigidBody.velocity = finalKnockVelocity;
+        myRigidbody.velocity = finalKnockVelocity;
         
         // Start the coroutine for the delayed reset
         StopCoroutine("KnockbackCoroutine"); 
-        StartCoroutine(KnockbackCoroutine(rigidBody, knockTime));
+        StartCoroutine(KnockbackCoroutine(myRigidbody, knockTime));
     }
     
     private IEnumerator KnockbackCoroutine(Rigidbody2D myRigidBody, float knockTime)

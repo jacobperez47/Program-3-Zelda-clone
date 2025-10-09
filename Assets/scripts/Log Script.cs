@@ -93,13 +93,11 @@ public class LogScript : EnemyScript
             if (other.IsTouching(vision))
             {
                 isVisible = true;
-                Debug.Log("Player in vision range");
             }
 
             if (attack != null && other.IsTouching(attack))
             {
                 isAttacking = true;
-                Debug.Log("Player in attack range");
             }
         }
     }
@@ -118,7 +116,6 @@ public class LogScript : EnemyScript
                 isAttacking = false;
             }
 
-            Debug.Log("Player out of vision range");
         }
     }
 

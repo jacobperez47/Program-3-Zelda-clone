@@ -24,6 +24,8 @@ public class EnemyScript : MonoBehaviour
 
     public CircleCollider2D attack;
 
+    public Collider2D attackHitboxes;
+
     public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime)
     {
         // Safety check
@@ -59,6 +61,8 @@ public class EnemyScript : MonoBehaviour
         }
         currentState = EnemyStates.idle;
     }
+    
+    
     public bool IsSensor(Collider2D otherCollider)
     {
         // Check if the collider being hit is one of the sensor colliders

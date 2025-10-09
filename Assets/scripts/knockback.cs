@@ -18,15 +18,18 @@ public class knockback : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-    
-        if (other.CompareTag("enemy") || other.CompareTag("Player"))
+        // if (other.CompareTag("breakable")) 
+        // {
+        //     other.GetComponent<PotScript>().smash();
+        // }
+        if (other.CompareTag("enemy"))
         {
             Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
             if (hit != null)
             {
                 Vector2 difference = hit.transform.position - transform.position;
                 Vector2 force = difference.normalized * thrust;
-                if (other.CompareTag("enemy"))
+                
                 {
                     if (hit.GetComponent<EnemyScript>().currentState != EnemyStates.stagger)
                     {
@@ -36,20 +39,26 @@ public class knockback : MonoBehaviour
                     }
                 }
 
-                if (other.CompareTag("Player") && this.CompareTag("enemy") &&
-                    hit.GetComponent<PlayerMovement>().currentState != PlayerStates.stagger)
-                {
-                    if (!this.CompareTag("attack") && !this.CompareTag("vision"))
-                    {
-                        hit.GetComponent<PlayerMovement>().currentState = PlayerStates.stagger;
+                
 
-                        other.GetComponent<PlayerMovement>().Knock(hit, force, .3f);
-                        ;
-                    }
+
                 }
+            
+            
+        }
+        if (other.CompareTag("Player"))
+        {
+            Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
+            Vector2 difference = hit.transform.position - transform.position;
+            Vector2 force = difference.normalized * thrust;
+            if(hit.GetComponent<Collider2D>().IsTouching(hit.GetComponent<EnemyScript>().attackHitboxes)){
+                hit.GetComponent<PlayerMovement>().currentState = PlayerStates.stagger;
 
-                //StartCoroutine(KnockbackCoroutine(hit));
+                hit.GetComponent<PlayerMovement>().Knock(force, .2f);
+
             }
+
+               
         }
     }
 }

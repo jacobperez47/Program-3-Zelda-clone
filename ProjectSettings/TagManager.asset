@@ -12,12 +12,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Radius Triggers
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Player hitbox
+  - enemy
   - 
   - 
   - 
