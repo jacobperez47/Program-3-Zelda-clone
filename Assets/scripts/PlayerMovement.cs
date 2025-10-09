@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public FloatValue currentHealth;
     private bool attackPressed;
     private float nextAttackTime = 0f;
+    private Coroutine knockbackRoutine;
 
     
     void Start()
@@ -105,12 +106,20 @@ public class PlayerMovement : MonoBehaviour
         // Safety check
         if (myRigidbody == null) return;
 
-        // Force application and state setting (instantaneous)
+        if (knockbackRoutine != null)
+        {
+            StopCoroutine(knockbackRoutine);
+        }
+
+       
         currentState = PlayerStates.stagger; 
-        myRigidbody.velocity = finalKnockVelocity;
+       
+        myRigidbody.velocity = Vector2.zero;
+        myRigidbody.AddForce(finalKnockVelocity, ForceMode2D.Impulse);
         
         // Start the coroutine for the delayed reset
         StopCoroutine("KnockbackCoroutine"); 
+        
         StartCoroutine(KnockbackCoroutine(myRigidbody, knockTime));
     }
     
