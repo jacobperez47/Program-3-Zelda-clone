@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyKnockback : knockback
+public class EnemyKnockback : MonoBehaviour
 {
+    public float thrust;
+
+    private EnemyScript enemy;
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        enemy = GetComponentInParent<EnemyScript>();
+
     }
 
     // Update is called once per frame
@@ -24,10 +29,9 @@ public class EnemyKnockback : knockback
         {
             Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
             PlayerMovement player = other.GetComponent<PlayerMovement>();
-            EnemyScript enemy = this.GetComponent<EnemyScript>();
             
 
-            if (hit != null && enemy != null)
+            if (hit != null && enemy != null && player != null)
             {
                 if (player.currentState != PlayerStates.stagger && hit.IsTouching(enemy.attackHitboxes))
                 {

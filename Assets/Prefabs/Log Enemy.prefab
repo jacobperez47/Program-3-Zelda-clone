@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2295759617040446226}
   - component: {fileID: 3486200807445917520}
   - component: {fileID: 1816431757919836760}
-  - component: {fileID: 7070449592144211853}
   - component: {fileID: 5012989590474124168}
   m_Layer: 8
   m_Name: Log Enemy
@@ -242,19 +241,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.048545003, y: -0.28324604}
   m_Size: {x: 1.1832407, y: 1.8271084}
   m_Direction: 0
---- !u!114 &7070449592144211853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2009710148657228332}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76584215933d644796586a1bed5c1fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 0
 --- !u!114 &5012989590474124168
 MonoBehaviour:
   m_ObjectHideFlags: 0
