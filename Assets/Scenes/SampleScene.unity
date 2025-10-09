@@ -590,6 +590,7 @@ MonoBehaviour:
   health: 0
   enemyName: 
   baseAttack: 0
+  currentState: 0
   speed: 2
   baseDamage: 0
   vision: {fileID: 1965993774}
@@ -726,7 +727,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1798945911
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1173596933, guid: 5af5f83e4ac8bdd4fab03aa127527ca2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1008,7 +1009,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -163870407
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 690700335, guid: c752478db8cb1ee47a34efe53abd908c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3788,7 +3789,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1798945911
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 2
   m_Sprite: {fileID: -1967139946, guid: 791f34ef81d43d946b5ce54ed1a5674d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4217,7 +4218,7 @@ MonoBehaviour:
   dialogBox: {fileID: 840827411}
   dialogText: {fileID: 1461328139}
   dialog: Area not yet developed
-  dialogActive: 0
+  playerInRange: 0
 --- !u!1 &1965993773
 GameObject:
   m_ObjectHideFlags: 0
