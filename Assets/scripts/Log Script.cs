@@ -13,6 +13,8 @@ public class LogScript : EnemyScript
     public float speed;
 
     public int baseDamage;
+    
+    public Animator animator;
 
     // public CircleCollider2D vision;
     //
@@ -29,6 +31,7 @@ public class LogScript : EnemyScript
         currentState = EnemyStates.idle;
         rb = GetComponent<Rigidbody2D>();
         isVisible = false;
+        animator = GetComponent<Animator>();
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -50,15 +53,24 @@ public class LogScript : EnemyScript
             {
                 MoveToTarget();
                 changeState(EnemyStates.walk);
+                animator.SetBool("wakeup", true);
             }
+            
+        }
+        else if(!isVisible)
+        {
+            animator.SetBool("wakeup", false);
         }
     }
 
     private void MoveToTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
+        
+        
 
         rb.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
+        changeAnim(direction);
     }
 
     public void StartKnockBack(float duration)
@@ -116,6 +128,35 @@ public class LogScript : EnemyScript
                 isAttacking = false;
             }
 
+        }
+    }
+
+    private void changeAnim(Vector2 direction)
+    {
+        Debug.Log(direction);
+        animator.SetFloat("moveX", 0);
+        animator.SetFloat("moveY", 0);
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                animator.SetFloat("moveX", 1 );
+            }
+            else if (direction.x < 0)
+            {
+                animator.SetFloat("moveX", -1 );
+            }
+        }
+        else if (Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+        {
+            if (direction.y > 0)
+            {
+                animator.SetFloat("moveY", 1 );
+            }
+            else if (direction.y < 0)
+            {
+                animator.SetFloat("moveY", -1 );
+            }
         }
     }
 

@@ -183,7 +183,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8834753, y: 0.6483475}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &3486200807445917520
 MonoBehaviour:
@@ -206,6 +206,7 @@ MonoBehaviour:
   attackHitboxes: {fileID: 1816431757919836760}
   speed: 2
   baseDamage: 0
+  animator: {fileID: 1947743543945220332}
 --- !u!70 &1816431757919836760
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
