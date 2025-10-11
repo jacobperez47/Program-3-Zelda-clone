@@ -37,6 +37,7 @@ public class LogScript : EnemyScript
         {
             target = playerObject.transform;
         }
+        Debug.Log(maxHealth);
     }
 
     // Update is called once per frame
@@ -133,7 +134,6 @@ public class LogScript : EnemyScript
 
     private void changeAnim(Vector2 direction)
     {
-        Debug.Log(direction);
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", 0);
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))

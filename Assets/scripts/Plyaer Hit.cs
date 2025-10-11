@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHit : knockback
+public class PlayerHit : MonoBehaviour
 {
 
+    public float damage = 1.0f;
+    public float thrust;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,8 @@ public class PlayerHit : knockback
                     Vector2 force = difference.normalized * thrust;
                     Debug.Log("enemy knocked back");
                     enemy.currentState = EnemyStates.stagger;
-                    enemy.Knock(hit, force, .2f);
+                    Debug.Log("enemy took damage");
+                    enemy.Knock(hit, force, .2f,this.damage);
                 }
             }
         }

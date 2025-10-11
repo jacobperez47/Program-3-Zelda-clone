@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float attackCooldown = 0.5f;
     public PlayerStates currentState;
+    private float health = 3.0f;
     
     private Rigidbody2D myRigidbody;
     private Vector3 change;
@@ -36,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetFloat("moveX", 0f);
         animator.SetFloat("moveY", -1f);
-     
+        
+
     }
 
     // Update is called once per frame
@@ -100,8 +102,12 @@ public class PlayerMovement : MonoBehaviour
         change.Normalize();
         myRigidbody.MovePosition(transform.position + change.normalized * (speed * Time.fixedDeltaTime));
     }
-    
-    public void Knock( Vector2 finalKnockVelocity, float knockTime)
+
+    private void takeDamage(float damageToTake)
+    {
+        
+    }
+    public void Knock( Vector2 finalKnockVelocity, float knockTime, float damage)
     {
         // Safety check
         if (myRigidbody == null) return;

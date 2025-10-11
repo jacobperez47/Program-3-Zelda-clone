@@ -35,7 +35,7 @@ public class knockback : MonoBehaviour
                     {
                         hit.GetComponent<EnemyScript>().currentState = EnemyStates.stagger;
 
-                        other.GetComponent<EnemyScript>().Knock(hit, force, .2f);
+                        other.GetComponent<EnemyScript>().Knock(hit, force, .2f,0);
                     }
                 }
 
@@ -54,7 +54,7 @@ public class knockback : MonoBehaviour
             if(hit.GetComponent<Collider2D>().IsTouching(hit.GetComponent<EnemyScript>().attackHitboxes)){
                 hit.GetComponent<PlayerMovement>().currentState = PlayerStates.stagger;
 
-                hit.GetComponent<PlayerMovement>().Knock(force, .2f);
+                hit.GetComponent<PlayerMovement>().Knock(force, .2f, 0);
 
             }
 

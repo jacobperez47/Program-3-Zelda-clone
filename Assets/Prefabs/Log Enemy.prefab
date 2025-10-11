@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c71ca28ccea904c8ef1b4446080bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  maxHealth: {fileID: 11400000, guid: 70461ead1369a764398545579fabcccf, type: 2}
   enemyName: 
   baseAttack: 0
   currentState: 0
@@ -254,7 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6175fdee3c00cdc4da8e4c765baed91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 150
+  thrust: 100
+  damage: 0.5
 --- !u!1 &5183693050298567475
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +322,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.5
 --- !u!1 &7076395707863453803
 GameObject:
   m_ObjectHideFlags: 0

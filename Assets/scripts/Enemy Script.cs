@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,33 +13,22 @@ public enum EnemyStates
 
 public class EnemyScript : MonoBehaviour
 {
-    public int health;
+    private float health;
+
+    public FloatValue maxHealth;
 
     public string enemyName;
 
     public int baseAttack;
 
     public EnemyStates currentState;
-    
+
     public CircleCollider2D vision;
 
     public CircleCollider2D attack;
 
     public Collider2D attackHitboxes;
 
-    public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime)
-    {
-        // Safety check
-        if (rigidBody == null) return;
-
-        // Force application and state setting (instantaneous)
-        currentState = EnemyStates.stagger; 
-        rigidBody.velocity = finalKnockVelocity;
-        
-        // Start the coroutine for the delayed reset
-        StopCoroutine("KnockbackCoroutine"); 
-        StartCoroutine(KnockbackCoroutine(rigidBody, knockTime));
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -50,19 +40,46 @@ public class EnemyScript : MonoBehaviour
     {
     }
 
-    public IEnumerator KnockbackCoroutine(Rigidbody2D myRigidBody, float knockTime)
+    private void Awake()
     {
-        yield return new WaitForSeconds(knockTime); 
+        health = maxHealth.initialValue;
+
+    }
+
+    public IEnumerator KnockbackCoroutine(Rigidbody2D myRigidBody, float knockTime, float damage)
+    {
+        yield return new WaitForSeconds(knockTime);
 
         // Reset velocity and state
         if (myRigidBody != null)
         {
             myRigidBody.velocity = Vector2.zero;
         }
+
         currentState = EnemyStates.idle;
     }
-    
-    
+
+    private void takeDamage(float damageToTake)
+    {
+        health -= damageToTake;
+        if (health <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+    public void Knock(Rigidbody2D rigidBody, Vector2 finalKnockVelocity, float knockTime, float damage)
+    {
+        if (rigidBody == null) return;
+
+        currentState = EnemyStates.stagger;
+        rigidBody.velocity = finalKnockVelocity;
+
+        // Start the coroutine for the delayed reset
+        StopCoroutine("KnockbackCoroutine");
+        StartCoroutine(KnockbackCoroutine(rigidBody, knockTime, damage));
+        takeDamage(damage);
+    }
+
     public bool IsSensor(Collider2D otherCollider)
     {
         // Check if the collider being hit is one of the sensor colliders

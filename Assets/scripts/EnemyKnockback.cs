@@ -8,6 +8,8 @@ public class EnemyKnockback : MonoBehaviour
 
     private EnemyScript enemy;
     private Rigidbody2D enemyRigidbody;
+    public float damage;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,7 @@ public class EnemyKnockback : MonoBehaviour
                     Vector2 force = difference.normalized * thrust;
                     Debug.Log("Player knocked back");
                     player.currentState = PlayerStates.stagger;
-                    player.Knock(force, .25f);
+                    player.Knock(force, .25f,damage);
                 }
             }
         }
