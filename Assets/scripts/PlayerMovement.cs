@@ -19,44 +19,45 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float attackCooldown = 0.5f;
     public PlayerStates currentState;
-    private float health = 3.0f;
-    
+    public Signal playerHealthSignal;
+    public FloatValue currentHealth;
+
+
     private Rigidbody2D myRigidbody;
     private Vector3 change;
     private Animator animator;
-    public FloatValue currentHealth;
     private bool attackPressed;
     private float nextAttackTime = 0f;
     private Coroutine knockbackRoutine;
 
-    
+
     void Start()
     {
         currentState = PlayerStates.walk;
+        currentHealth.initialValue = 6.0f;
         myRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         animator.SetFloat("moveX", 0f);
         animator.SetFloat("moveY", -1f);
-        
-
     }
 
     // Update is called once per frame
 
     void Update()
     {
-        if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) && currentState != PlayerStates.attack && 
+        if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space)) && currentState != PlayerStates.attack &&
             Time.time >= nextAttackTime)
         {
             attackPressed = true;
         }
     }
+
     void FixedUpdate()
     {
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-       
+
         if (attackPressed && currentState != PlayerStates.attack)
         {
             attackPressed = false;
@@ -64,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(AttackCo());
         }
 
-       else if (currentState == PlayerStates.walk || currentState == PlayerStates.idle)
+        else if (currentState == PlayerStates.walk || currentState == PlayerStates.idle)
         {
             UpdateCharacterAnimation();
         }
@@ -82,8 +83,8 @@ public class PlayerMovement : MonoBehaviour
         //     yield return new WaitForSeconds(remainingCooldown);
         // }
         currentState = PlayerStates.walk;
-        
     }
+
     private void UpdateCharacterAnimation()
     {
         if (change != Vector3.zero)
@@ -103,41 +104,63 @@ public class PlayerMovement : MonoBehaviour
         myRigidbody.MovePosition(transform.position + change.normalized * (speed * Time.fixedDeltaTime));
     }
 
-    private void takeDamage(float damageToTake)
+    public void Knock(Vector2 finalKnockVelocity, float knockTime, float damage)
     {
-        
-    }
-    public void Knock( Vector2 finalKnockVelocity, float knockTime, float damage)
-    {
-        // Safety check
+        Debug.Log(currentHealth.initialValue);
+        // Safety check for Rigidbody
         if (myRigidbody == null) return;
 
-        if (knockbackRoutine != null)
+        // --- 1. HEALTH AND DAMAGE LOGIC ---
+        Debug.Log(currentHealth.initialValue);
+
+        // CRITICAL NULL CHECK: Ensure the ScriptableObject is assigned before using it.
+        if (currentHealth == null)
         {
-            StopCoroutine(knockbackRoutine);
+            Debug.LogError("FATAL ERROR: currentHealth (FloatValue) is NULL! Check PlayerMovement Inspector.");
+            return;
         }
 
-       
-        currentState = PlayerStates.stagger; 
-       
-        myRigidbody.velocity = Vector2.zero;
-        myRigidbody.AddForce(finalKnockVelocity, ForceMode2D.Impulse);
-        
-        // Start the coroutine for the delayed reset
-        StopCoroutine("KnockbackCoroutine"); 
-        
-        StartCoroutine(KnockbackCoroutine(myRigidbody, knockTime));
+        // Reduce health
+        currentHealth.initialValue -= damage;
+
+        // --- 2. KNOCKBACK EXECUTION ---
+
+        if (currentHealth.initialValue > 0)
+        {
+            // Stop any running KnockbackCoroutine to prevent state conflicts
+            if (knockbackRoutine != null)
+            {
+                StopCoroutine(knockbackRoutine);
+            }
+
+            playerHealthSignal.Raise();
+            Debug.Log("health signal raised");
+            currentState = PlayerStates.stagger;
+            myRigidbody.velocity = Vector2.zero;
+            myRigidbody.AddForce(finalKnockVelocity, ForceMode2D.Impulse);
+
+            knockbackRoutine = StartCoroutine(KnockbackCoroutine(myRigidbody, knockTime));
+        }
+        else
+        {
+            // Handle death if health <= 0
+            Debug.Log("Player has died!");
+            // You would typically call a death function here (e.g., DieCo()).
+            // For now, let's just make sure the player stops moving and state is set to idle.
+            currentState = PlayerStates.idle;
+        }
     }
-    
+
     private IEnumerator KnockbackCoroutine(Rigidbody2D myRigidBody, float knockTime)
     {
-        yield return new WaitForSeconds(knockTime); 
+        yield return new WaitForSeconds(knockTime);
 
         // Reset velocity and state
         if (myRigidBody != null)
         {
             myRigidBody.velocity = Vector2.zero;
         }
+
         currentState = PlayerStates.idle;
     }
 }

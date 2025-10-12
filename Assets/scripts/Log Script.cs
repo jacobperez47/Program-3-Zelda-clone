@@ -11,8 +11,6 @@ public class LogScript : EnemyScript
 
 
     public float speed;
-
-    public int baseDamage;
     
     public Animator animator;
 

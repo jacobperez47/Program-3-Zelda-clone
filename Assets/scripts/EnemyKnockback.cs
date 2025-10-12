@@ -30,8 +30,6 @@ public class EnemyKnockback : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-
         if (other.CompareTag("Player"))
         {
             Rigidbody2D hit = other.GetComponent<Rigidbody2D>();
@@ -40,16 +38,27 @@ public class EnemyKnockback : MonoBehaviour
 
             if (hit != null && enemy != null && player != null)
             {
+                // CRITICAL NULL CHECK: The previous version crashed here if the enemy was missing a Rigidbody2D.
+                if (enemyRigidbody == null)
+                {
+                    Debug.LogError("Cannot stop enemy movement: enemyRigidbody is NULL. Check Enemy GameObject for Rigidbody2D.");
+                    return; // Exit to prevent crash
+                }
                
-                    enemyRigidbody.velocity = Vector2.zero;
-                    enemyRigidbody.angularVelocity = 0f;
+                // Stop enemy movement
+                enemyRigidbody.velocity = Vector2.zero;
+                enemyRigidbody.angularVelocity = 0f;
+
+                // Check player state and hitbox collision
                 if (player.currentState != PlayerStates.stagger && hit.IsTouching(enemy.attackHitboxes))
                 {
                     Vector2 difference = player.transform.position - transform.position;
                     Vector2 force = difference.normalized * thrust;
-                    Debug.Log("Player knocked back");
-                    player.currentState = PlayerStates.stagger;
-                    player.Knock(force, .25f,damage);
+                    
+                    Debug.Log("Player hit detected, calling Knock.");
+                    
+                    // We let the player.Knock() function handle the state change and coroutine management
+                    player.Knock(force, .25f, damage);
                 }
             }
         }

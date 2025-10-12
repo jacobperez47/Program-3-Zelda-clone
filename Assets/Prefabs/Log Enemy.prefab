@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6175fdee3c00cdc4da8e4c765baed91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 100
+  thrust: 50
   damage: 0.5
 --- !u!1 &5183693050298567475
 GameObject:
