@@ -31,12 +31,18 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine knockbackRoutine;
 
 
+
+    void Awake()
+    {
+        myRigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        currentHealth.initialValue = 6.0f;
+
+    }
     void Start()
     {
         currentState = PlayerStates.walk;
-        currentHealth.initialValue = 6.0f;
-        myRigidbody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+      
         animator.SetFloat("moveX", 0f);
         animator.SetFloat("moveY", -1f);
     }
@@ -111,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
         if (myRigidbody == null) return;
 
         // --- 1. HEALTH AND DAMAGE LOGIC ---
-        Debug.Log(currentHealth.initialValue);
 
         // CRITICAL NULL CHECK: Ensure the ScriptableObject is assigned before using it.
         if (currentHealth == null)
@@ -120,21 +125,20 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+
         // Reduce health
-        currentHealth.initialValue -= damage;
+        currentHealth.runtimeValue -= damage;
 
-        // --- 2. KNOCKBACK EXECUTION ---
 
-        if (currentHealth.initialValue > 0)
+        if (currentHealth.runtimeValue > 0)
         {
             // Stop any running KnockbackCoroutine to prevent state conflicts
             if (knockbackRoutine != null)
             {
                 StopCoroutine(knockbackRoutine);
             }
-
+            
             playerHealthSignal.Raise();
-            Debug.Log("health signal raised");
             currentState = PlayerStates.stagger;
             myRigidbody.velocity = Vector2.zero;
             myRigidbody.AddForce(finalKnockVelocity, ForceMode2D.Impulse);
@@ -148,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
             // You would typically call a death function here (e.g., DieCo()).
             // For now, let's just make sure the player stops moving and state is set to idle.
             currentState = PlayerStates.idle;
+            this.gameObject.SetActive(false);
         }
     }
 
